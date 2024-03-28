@@ -1,0 +1,22 @@
+data_dir: "/var/lib/vector"
+api:
+  enabled: false
+  # address: 0.0.0.0:8686
+sources:
+  fluent:
+    type: fluent
+    address: 0.0.0.0:24224
+sinks:
+  clickhouse:
+    type: clickhouse
+    inputs:
+      - fluent
+    endpoint: http://clickhouse:8123
+    database: logs
+    table: rds_audit_logs
+    format: json_each_row
+    buffer:
+      type: disk
+      max_size: 1073741952 # 1GB
+      max_events: 1000000
+    compression: zstd
