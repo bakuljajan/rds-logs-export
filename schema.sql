@@ -20,5 +20,5 @@ ENGINE = ReplacingMergeTree()
 ORDER BY (timestamp, serverhost, username, host, connectionid, queryid, operation, database)
 PARTITION BY toYYYYMMDD(`timestamp`);
 
-ALTER TABLE logs.rds_audit_logs ADD INDEX inv_idx(lower(object)) TYPE inverted(3, 0);
+ALTER TABLE logs.rds_audit_logs ADD INDEX inv_idx(lower(object)) TYPE full_text();
 ALTER TABLE logs.rds_audit_logs MATERIALIZE INDEX inv_idx;

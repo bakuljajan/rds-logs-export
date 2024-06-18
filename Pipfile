@@ -7,8 +7,10 @@ name = "pypi"
 boto3 = "*"
 joblib = "*"
 fluent-logger = "*"
+clickhouse-connect = "==0.7.12"
+pandas = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.11"
+python_version = "3.12"
